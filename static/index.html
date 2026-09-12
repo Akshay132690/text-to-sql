@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>QueryPilot — Text-to-SQL</title>
+
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+    <div class="app">
+
+        <header class="header">
+
+            <div class="brand">
+                <div class="logo">✦</div>
+
+                <div>
+                    <h1>QueryPilot</h1>
+                    <span>Text-to-SQL Assistant</span>
+                </div>
+            </div>
+
+            <div class="status">
+                <span class="status-dot"></span>
+                Database Connected
+            </div>
+
+        </header>
+
+
+        <main class="main">
+
+            <section class="hero">
+
+                <div class="badge">
+                    AI-Powered Database Assistant
+                </div>
+
+                <h2>
+                    Ask your database<br>
+                    <span>in plain English.</span>
+                </h2>
+
+                <p>
+                    QueryPilot understands your question, detects ambiguity,
+                    and generates safe SQL for your database.
+                </p>
+
+            </section>
+
+
+            <section class="query-card">
+
+                <label for="question">
+                    Your question
+                </label>
+
+                <textarea id="question" placeholder="e.g. Which customer has the highest total spending?"
+                    rows="4"></textarea>
+
+                <div class="query-footer">
+
+                    <div class="examples">
+                        Try:
+                        <button onclick="useExample('Who is the best customer?')">
+                            Best customer
+                        </button>
+
+                        <button onclick="useExample('Show all customers from Pune.')">
+                            Pune customers
+                        </button>
+
+                        <button onclick="useExample('Which customer has the highest total spending?')">
+                            Top spender
+                        </button>
+                    </div>
+
+                    <button id="askButton" class="ask-button" onclick="askDatabase()">
+                        Ask Database
+                        <span>→</span>
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <div id="loading" class="loading hidden">
+                <div class="spinner"></div>
+                <span>Understanding your question...</span>
+            </div>
+
+
+            <section id="clarification" class="result-card hidden">
+
+                <div class="result-header">
+                    <div class="result-icon">?</div>
+
+                    <div>
+                        <h3>Clarification needed</h3>
+                        <p>The question needs a little more context.</p>
+                    </div>
+                </div>
+
+                <div id="clarificationText" class="clarification-text"></div>
+
+            </section>
+
+
+            <section id="sqlSection" class="result-card hidden">
+
+                <div class="result-header">
+
+                    <div class="result-icon success">✓</div>
+
+                    <div>
+                        <h3>SQL Generated</h3>
+                        <p>Your question was converted into SQL.</p>
+                    </div>
+
+                </div>
+
+                <div class="sql-container">
+                    <pre id="sqlCode"></pre>
+                </div>
+
+            </section>
+
+
+            <section id="resultsSection" class="result-card hidden">
+
+                <div class="result-header">
+
+                    <div class="result-icon success">✓</div>
+
+                    <div>
+                        <h3>Query Results</h3>
+                        <p>Data retrieved from MySQL.</p>
+                    </div>
+
+                </div>
+
+                <div id="resultsTable" class="table-container"></div>
+
+            </section>
+
+
+            <section id="errorSection" class="result-card error-card hidden">
+
+                <div class="result-header">
+
+                    <div class="result-icon error">!</div>
+
+                    <div>
+                        <h3>Something went wrong</h3>
+                    </div>
+
+                </div>
+
+                <div id="errorText"></div>
+
+            </section>
+
+        </main>
+
+
+        <footer>
+            <span>QueryPilot</span>
+            <span>•</span>
+            <span>Groq + FastAPI + MySQL</span>
+        </footer>
+
+    </div>
+
+
+    <script src="/static/app.js"></script>
+
+</body>
+
+</html>
