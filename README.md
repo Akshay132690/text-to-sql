@@ -204,7 +204,7 @@ The query results are returned to the frontend and displayed to the user.
 ### 1. Clone the repository
 
 ```bash
-git clone <YOUR_GITHUB_REPOSITORY_URL>
+git clone https://github.com/Akshay132690/text-to-sql.git
 cd text-to-sql
 ```
 
